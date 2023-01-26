@@ -11,7 +11,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/coffee_store
     username: root
-    password: xKij7s
+    password: <PW>
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
