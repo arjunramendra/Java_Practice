@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 //Marker Annotation is one that does not contain any body.
 //Having 1 data -> Single Value Annotation
-//More than 1 data -> Multi Value Annottation
+//More than 1 data -> Multi Value Annotation
 
 @Inherited
 @Documented

@@ -1,7 +1,5 @@
 package com.example.linkedlist;
 
-import java.util.Vector;
-
 public class LinkedList {
 
 	Node head;
@@ -82,60 +80,66 @@ public class LinkedList {
 	
     public Node reverseList(Node head) {
     	Node prev = head;
-        Node curr = head.next;
-        while(curr != null) {
-        	Node next = curr.next;
-        	curr.next = prev;
-        	
-        	prev = curr;
-        	curr = next;
-        }
-        head.next = null;
-        head = prev;
-        return prev;
+		Node curr = prev.next;
+		while(curr != null){
+			Node next = curr.next;
+			curr.next = prev;
+
+			prev = curr;
+			curr = next;
+		}
+		head.next = null;
+		return prev;
     }
-    
-    public Node mergeSort(Node node) {
-    	if((node == null) || (node.next == null)){
-    		return node;
-    	}
-    	Node middle = middle(node);
-    	Node right = middle.next;	
-    	middle.next = null;
-    	Node a = mergeSort(node);
-    	Node b = mergeSort(right);
-    	Node temp = merge(a, b);
-    	return temp;
-    }
-    
-    public Node merge(Node a, Node b) {
-    	Node temp = new Node();
-    	Node finalList = temp;
-    	while(a != null && b != null) {
-    		if(a.data < b.data) {
-    			temp.next = a;
-    			a = a.next;
-    		}else {
-    			temp.next = b;
-    			b = b.next;
-    		}
-    		temp = temp.next;
-    	}
-    	temp.next = (a==null) ? b : a;
-    	return finalList.next;
-    }
-    
-    public Node middle(Node node) {
-    	if(node == null) {
-    		return node;
-    	}
-    	Node a = node;
-    	Node b = node.next;
-    	while(b != null && b.next != null) {
-    		a = a.next;
-    		b = b.next.next;
-    	}
-    	return a;
-    }
-	
+
+	public Node linkedListIntersection(Node headA, Node headB){
+		Node A = headA, B = headB;
+		while(A != B){
+			A = A == null? headB : A.next;
+			B = B == null? headA: B.next;
+		}
+		return A;
+	}
+
+	public Node mergeSort(Node node) {
+		if((node == null) || (node.next == null)){
+			return node;
+		}
+		Node middle = middle(node);
+		Node right = middle.next;
+		middle.next = null;
+		Node a = mergeSort(node);
+		Node b = mergeSort(right);
+		Node temp = merge(a, b);
+		return temp;
+	}
+
+	public Node merge(Node a, Node b) {
+		Node temp = new Node();
+		Node finalList = temp;
+		while(a != null && b != null) {
+			if(a.data < b.data) {
+				temp.next = a;
+				a = a.next;
+			}else {
+				temp.next = b;
+				b = b.next;
+			}
+			temp = temp.next;
+		}
+		temp.next = (a==null) ? b : a;
+		return finalList.next;
+	}
+
+	public Node middle(Node node) {
+		if (node == null) {
+			return node;
+		}
+		Node a = node, b = node.next;
+		while (b != null && b.next != null) {
+			a = a.next;
+			b = b.next.next;
+		}
+		return a;
+	}
 }

@@ -6,99 +6,97 @@ import java.util.Stack;
 
 public class Node {
 
-	Integer data;
+	int data;
 	Node left, right;
-		
-	public Node(Integer data) {
+
+	public Node(int data){
 		this.data = data;
 	}
-	
-	public void insert(Integer value) {
-		if(value < data) {
+
+	public void insert(int value){
+		if(value > data){
+			if(right != null) {
+				right.insert(value);
+			}else{
+				right = new Node(value);
+			}
+		}else{
 			if(left != null) {
 				left.insert(value);
-			}else {
+			}else{
 				left = new Node(value);
 			}
 		}
-		else {
-			if(right != null) {
-				right.insert(value);
-			}else {
-				right = new Node(value);
-			}
-		}
 	}
-	
-	public boolean contains(int value) {
-		if (value == data) {
+
+	public boolean contains(int value){
+		if(value == data) {
 			return true;
 		}else if(value < data){
-			if(left == null) {
+			if(left == null){
 				return false;
 			}else {
 				return left.contains(value);
 			}
-		}else {
-			if(right == null) {
+		}else{
+			if(right == null){
 				return false;
 			}else {
 				return right.contains(value);
 			}
 		}
 	}
-	
-	public void inOrder() {
-		if(left != null) {
+
+	public void inOrder(){
+		if(left != null){
 			left.inOrder();
 		}
-		System.out.println(this.data);
-		if(right != null) {
+		System.out.print(data + " ");
+		if(right != null){
 			right.inOrder();
 		}
 	}
-	
-	public void preOrder() {
-		System.out.println(this.data);
+
+	public void preOrder(){
+		System.out.print(data + " ");
 		if(left != null) {
-			left.preOrder();
+			left.inOrder();
 		}
-		if(right != null) {
-			right.preOrder();
+		if(right != null){
+			right.inOrder();
 		}
 	}
-	
-	public void postOrder() {
+
+	public void postOrder(){
 		if(left != null) {
-			left.postOrder();
+			left.inOrder();
 		}
-		if(right != null) {
-			right.postOrder();
+		if(right != null){
+			right.inOrder();
 		}
-		System.out.println(this.data);
+		System.out.print(data + " ");
 	}
-	
+
 	public void levelOrder() {
 		Queue<Node> visited = new LinkedList<>();
 		visited.add(this);
 		while(!visited.isEmpty()) {
-			if(visited.peek().left != null) {
+			if (visited.peek().left != null) {
 				visited.add(visited.peek().left);
 			}
-			if(visited.peek().right != null) {
+			if (visited.peek().right != null) {
 				visited.add(visited.peek().right);
 			}
 			System.out.print(visited.poll().data + " ");
 		}
 	}
-	
+
 	public void printZigZagTraversal() {
 		Stack<Node> current = new Stack<>();
-		Stack<Node> next = new Stack<>();
+		Stack<Node> next  =new Stack<>();
 		boolean leftToRight = true;
 		current.add(this);
-		
-		while(!current.isEmpty()) {
+		while(!current.isEmpty()){
 			Node temp = current.pop();
 			System.out.print(temp.data + " ");
 			if(leftToRight) {
@@ -116,12 +114,12 @@ public class Node {
 				}
 			}
 			if(current.isEmpty()) {
-				leftToRight = !leftToRight; 
+				leftToRight = !leftToRight;
 				current = next;
 			}
 		}
 	}
-	
+
 	public boolean validateBST() {
 		Integer data = left.data;
 		if(left != null) {
@@ -140,7 +138,7 @@ public class Node {
 		}
 		return true;
 	}
-	
+
 	public int maxDepth(Node root) {
 		if(root == null) {
 			return 0;

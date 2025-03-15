@@ -24,7 +24,9 @@ public class Runner {
 		list.show();
 //		list.mergeSort(list.head);
 //		list.show();
+		System.out.println("Middle");
 		System.out.println(list.middle(list.head).data);
+		System.out.println("Reverse");
 		new LinkedList(list.reverseList(list.head)).show();
 	}
 }
