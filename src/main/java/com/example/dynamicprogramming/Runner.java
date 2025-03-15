@@ -10,7 +10,6 @@ public class Runner {
 	
 	public static int minCostStairs() {
 		int[] cost	= {1,100,1,1,1,100,1,1,100,1};
-
 		int rob2 = 0;
 		int rob1 = 0;
 		for(int n = 2; n < cost.length ; n++) {
